@@ -1,4 +1,4 @@
-package petstore.bo;
+package org.seffar.petstore.bo;
 
 import jakarta.persistence.*;
 
@@ -12,12 +12,15 @@ public class Address {
     private String street;
     private String zipCode;
     private String city;
+
     @OneToOne(mappedBy = "address")
     private PetStore petStore;
 
+    // Constructeur par défaut
     public Address() {
     }
 
+    // Constructeur avec paramètres
     public Address(String number, String street, String zipCode, String city, PetStore petStore) {
         this.number = number;
         this.street = street;
@@ -26,6 +29,7 @@ public class Address {
         this.petStore = petStore;
     }
 
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -74,6 +78,7 @@ public class Address {
         this.petStore = petStore;
     }
 
+    // Méthode toString pour afficher les informations de l'adresse
     @Override
     public String toString() {
         return "Address{" +

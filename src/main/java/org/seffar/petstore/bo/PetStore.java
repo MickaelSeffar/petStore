@@ -1,4 +1,4 @@
-package petstore.bo;
+package org.seffar.petstore.bo;
 
 import jakarta.persistence.*;
 
@@ -14,15 +14,19 @@ public class PetStore {
     private Long id;
     private String name;
     private String managerName;
-    @OneToMany(mappedBy = "pet_store")
+
+    @OneToMany(mappedBy = "petStore")
     private List<Animal> animals = new ArrayList<>();
+
     @OneToOne
-    @JoinColumn(name = "address_id",referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
+    // Constructeur par défaut
     public PetStore() {
     }
 
+    // Constructeur avec paramètres
     public PetStore(String name, String managerName, List<Animal> animals, Address address) {
         this.name = name;
         this.managerName = managerName;
@@ -30,6 +34,7 @@ public class PetStore {
         this.address = address;
     }
 
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -70,6 +75,7 @@ public class PetStore {
         this.address = address;
     }
 
+    // Méthode toString pour afficher les informations du PetStore
     @Override
     public String toString() {
         return "PetStore{" +

@@ -1,4 +1,4 @@
-package petstore.bo;
+package org.seffar.petstore.bo;
 
 import jakarta.persistence.*;
 
@@ -15,15 +15,18 @@ public class Product {
     private String label;
     private ProdType type;
     private double price;
+
     @ManyToMany
     @JoinTable(name = "product_petStore",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "petStore_id"))
     private List<PetStore> petStores = new ArrayList<>();
 
+    // Constructeur par défaut
     public Product() {
     }
 
+    // Constructeur avec paramètres
     public Product(String code, String label, ProdType type, double price, List<PetStore> petStores) {
         this.code = code;
         this.label = label;
@@ -32,6 +35,7 @@ public class Product {
         this.petStores = petStores;
     }
 
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -80,6 +84,7 @@ public class Product {
         this.petStores = petStores;
     }
 
+    // Méthode toString pour afficher les informations du produit
     @Override
     public String toString() {
         return "Product{" +

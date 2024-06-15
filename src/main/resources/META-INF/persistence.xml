@@ -4,32 +4,34 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
 
-
-  <persistence-unit name="petStore" >
+  <!-- Définition de l'unité de persistance -->
+  <persistence-unit name="petStore">
+    <!-- Spécifie le fournisseur de persistance Hibernate -->
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>petstore.bo.Address</class>
-    <class>petstore.bo.Animal</class>
-    <class>petstore.bo.Cat</class>
-    <class>petstore.bo.Fish</class>
-    <class>petstore.bo.PetStore</class>
-    <class>petstore.bo.Product</class>
+
+    <!-- Liste des classes de type @Entity gérées par cette unité de persistance -->
+    <class>org.seffar.petstore.bo.Address</class>
+    <class>org.seffar.petstore.bo.Animal</class>
+    <class>org.seffar.petstore.bo.Cat</class>
+    <class>org.seffar.petstore.bo.Fish</class>
+    <class>org.seffar.petstore.bo.PetStore</class>
+    <class>org.seffar.petstore.bo.Product</class>
 
     <properties>
-      <!-- desactiver l'autodetection des classes de type @Entity -->
+      <!-- Désactiver l'auto-détection des classes de type @Entity -->
       <property name="hibernate.archive.autodetection" value="" />
-      <!-- Activation de la génération des tables manquantes uniquement -->
+      <!-- Mise à jour de la base de données pour correspondre aux entités (crée les tables manquantes uniquement) -->
       <property name="hibernate.hbm2ddl.auto" value="update"/>
-      <!-- Drop and create à chaque redémarrage -->
-      <property name="javax.persistence.schema-generation.database.action"
-                value="drop-and-create"/>
-      <!-- Affichage des requêtes SQL -->
+      <!-- Drop et création de la base de données à chaque redémarrage -->
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <!-- Affichage des requêtes SQL générées par Hibernate -->
       <property name="hibernate.show_sql" value="true" />
-      <!-- Paramètres d'accès à la BDD -->
+      <!-- Paramètres de connexion à la base de données -->
       <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/petStore"/>
       <property name="jakarta.persistence.jdbc.user" value="mickael"/>
       <property name="jakarta.persistence.jdbc.password" value="admin"/>
-      <property name="javax.persistence.jdbc.driver"
-                value="org.mariadb.jdbc.Driver" />
+      <!-- Spécifie le driver JDBC utilisé pour la connexion -->
+      <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver" />
     </properties>
   </persistence-unit>
 </persistence>
